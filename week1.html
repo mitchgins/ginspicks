@@ -3,212 +3,560 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GinsPicks</title>
+    <title>GinsPicks - Week 1</title>
     <style>
         :root {
-            --primary: #013369; /* NFL Blue */
-            --secondary: #d50a0a; /* NFL Red */
-            --gold: #FFD700;
-            --bg: #f4f4f9;
-            --white: #ffffff;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #38bdf8;
+            --accent-hover: #0284c7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --btn-unselected: #334155;
+            --btn-selected: #2563eb;
+            --sureshot-gold: #f59e0b;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; padding-bottom: 50px; }
-        header { text-align: center; margin-bottom: 20px; }
-        h1 { color: var(--primary); margin: 0; font-size: 1.8em; }
 
-        /* Leaderboard Table */
-        .leaderboard-card { background: var(--white); border-radius: 12px; padding: 15px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); }
-        .leaderboard-card h3 { margin-top: 0; text-align: center; color: var(--primary); text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; }
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; font-size: 0.8em; color: #888; padding-bottom: 10px; border-bottom: 1px solid #eee; }
-        td { padding: 12px 5px; border-bottom: 1px solid #f9f9f9; font-weight: 500; }
-        .rank { width: 30px; font-weight: bold; color: #888; }
-        .points { text-align: right; font-weight: bold; color: var(--primary); }
-        
-        .rank-1 { color: #b8860b; background: #fffdf0; }
-        .medal { font-size: 1.2em; margin-right: 5px; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+        }
 
-        /* Name Selector Section */
-        .name-section { background: var(--white); border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center; border: 2px solid var(--primary); }
-        .name-section label { display: block; font-weight: bold; margin-bottom: 10px; color: var(--primary); }
-        select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 1em; background-color: #fff; cursor: pointer; }
+        .container {
+            width: 100%;
+            max-width: 650px;
+            padding-bottom: 60px;
+        }
 
-        /* Game Card Styling */
-        .game-card { background: var(--white); border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .matchup { display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 1.1em; margin-bottom: 10px; }
-        .spread-info { color: #666; font-size: 0.85em; margin-bottom: 15px; text-align: center; background: #f9f9f9; padding: 5px; border-radius: 5px; }
-        
-        /* Betting Buttons */
-        .bet-options { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-        .bet-btn { border: 1px solid #ddd; background: white; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s; font-size: 0.9em; }
-        .bet-btn.active { border-color: var(--primary); background: var(--primary); color: white; transform: scale(0.98); }
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
 
-        /* Sure Shot Toggle */
-        .sure-shot { margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.85em; color: #555; background: #fffbe6; padding: 8px; border-radius: 8px; border: 1px dashed #ffe58f; }
-        .sure-shot input { width: 18px; height: 18px; cursor: pointer; }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 4px;
+            color: var(--accent);
+        }
 
-        /* Final Score Section */
-        .final-score-section { background: #eef2f7; padding: 15px; border-radius: 12px; margin-top: 30px; text-align: center; border-left: 5px solid var(--secondary); }
-        .score-inputs { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
-        .score-inputs input { width: 70px; padding: 10px; text-align: center; border-radius: 8px; border: 1px solid #ccc; font-size: 1.1em; font-weight: bold; }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
 
-        button.submit-all { width: 100%; padding: 18px; background: #28a745; color: white; border: none; border-radius: 12px; font-size: 1.1em; font-weight: bold; margin-top: 30px; cursor: pointer; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); }
-        button.submit-all:active { transform: translateY(2px); box-shadow: none; }
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid #334155;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background-color: #0f172a;
+            color: #fff;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 14px;
+            border: 1px solid #334155;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .game-title {
+            font-size: 1.05rem;
+            font-weight: bold;
+        }
+
+        .game-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .game-spread {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .pick-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .btn-pick {
+            background-color: var(--btn-unselected);
+            color: var(--text-main);
+            border: none;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-pick.active {
+            background-color: var(--btn-selected);
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+        }
+
+        .sureshot-container {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .sureshot-container input {
+            margin-right: 8px;
+            accent-color: var(--sureshot-gold);
+        }
+
+        .tiebreaker-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent);
+            color: #0f172a;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .nav-back {
+            display: inline-block;
+            margin-bottom: 16px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <a href="index.html" class="nav-back">← Back to Leaderboard</a>
+    
     <header>
-        <h1>GinsPicks</h1>
-<p>Week 1 Picks</p>
-    <a href="index.html" style="color: var(--primary); font-size: 0.9em; text-decoration: none;">← Back to Leaderboard</a>
-</header>
-        <p>Current Season Standings</p>
+        <h1>Week 1 Picks</h1>
+        <div class="subtitle">Select your picks, assign your Sure Shot, and submit.</div>
     </header>
 
-    <div class="leaderboard-card">
-        <h3>🏆 Leaderboard</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Player</th>
-                    <th style="text-align: right;">Total Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="rank-1">
-                    <td class="rank">1</td>
-                    <td><span class="medal">🥇</span> Dad</td>
-                    <td class="points">42 pts</td>
-                </tr>
-                <tr>
-                    <td class="rank">2</td>
-                    <td><span class="medal">🥈</span> Aunt Sarah</td>
-                    <td class="points">38 pts</td>
-                </tr>
-                <tr>
-                    <td class="rank">3</td>
-                    <td><span class="medal">🥉</span> Cousin Mike</td>
-                    <td class="points">35 pts</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
-
-    <div class="name-section">
-        <label for="player-name">WHO IS MAKING THESE PICKS?</label>
-        <select id="player-name">
-            <option value="">-- Choose Your Name --</option>
-            <option value="Mom">Mom</option>
-            <option value="Dad">Dad</option>
-            <option value="Mitchell">Mitchell</option>
+    <form id="picksForm">
+        <!-- Player Select -->
+        <div class="section-card">
+            <label for="playerSelect">WHO IS MAKING THESE PICKS?</label>
+            <select id="playerSelect" required>
+                <option value="" disabled selected>-- Choose Your Name --</option>
+                <option value="Mom">Mom</option>
+                <option value="Dad">Dad</option>
+                <option value="Mitchell">Mitchell</option>
             </select>
-    </div>
-
-    <h2 style="text-align: center; color: var(--primary);">Week 1 Picks</h2>
-
-    <div class="game-card">
-        <div class="matchup">
-            <span>Chiefs</span> <span>@</span> <span>Ravens</span>
         </div>
-        <div class="spread-info">Favored: <strong>Chiefs (-3.5)</strong></div>
-        <div class="bet-options">
-            <button class="bet-btn" onclick="makeBet(this, 'yes')">YES</button>
-            <button class="bet-btn" onclick="makeBet(this, 'no')">NO</button>
-            <button class="bet-btn" onclick="makeBet(this, 'uf')">UF</button>
+
+        <!-- Games 1 to 16 -->
+        <!-- Game 1 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">1. New England Patriots @ Seattle Seahawks</span>
+                <span class="game-time">Wed 8:20 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game1" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game1" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game1" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game1" required> 🌟 This is my Sure Shot
+            </label>
         </div>
-        <label class="sure-shot">
-            <input type="radio" name="sureShot" value="1"> 🌟 This is my <strong>Sure Shot</strong>
-        </label>
-    </div>
 
-    <div class="game-card">
-        <div class="matchup">
-            <span>Eagles</span> <span>@</span> <span>Packers</span>
+        <!-- Game 2 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">2. San Francisco 49ers @ Los Angeles Rams</span>
+                <span class="game-time">Thu 8:35 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game2" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game2" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game2" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game2"> 🌟 This is my Sure Shot
+            </label>
         </div>
-        <div class="spread-info">Favored: <strong>Eagles (-2.5)</strong></div>
-        <div class="bet-options">
-            <button class="bet-btn" onclick="makeBet(this, 'yes')">YES</button>
-            <button class="bet-btn" onclick="makeBet(this, 'no')">NO</button>
-            <button class="bet-btn" onclick="makeBet(this, 'uf')">UF</button>
+
+        <!-- Game 3 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">3. Atlanta Falcons @ Pittsburgh Steelers</span>
+                <span class="game-time">Sun 1:00 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game3" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game3" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game3" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game3"> 🌟 This is my Sure Shot
+            </label>
         </div>
-        <label class="sure-shot">
-            <input type="radio" name="sureShot" value="2"> 🌟 This is my <strong>Sure Shot</strong>
-        </label>
-    </div>
 
-    <div class="final-score-section">
-        <strong>Monday Night Score</strong>
-        <p style="font-size: 0.8em; margin: 5px 0; color: #555;">Predict the exact score of the final game.</p>
-        <div class="score-inputs">
-            <div><small>Away</small><br><input type="number" id="away-score" placeholder="0"></div>
-            <div><small>Home</small><br><input type="number" id="home-score" placeholder="0"></div>
+        <!-- Game 4 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">4. Baltimore Ravens @ Indianapolis Colts</span>
+                <span class="game-time">Sun 1:00 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game4" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game4" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game4" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game4"> 🌟 This is my Sure Shot
+            </label>
         </div>
-    </div>
 
-    <button class="submit-all" onclick="submitPicks()">Lock My Picks</button>
+        <!-- Game 5 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">5. Buffalo Bills @ Houston Texans</span>
+                <span class="game-time">Sun 1:00 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game5" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game5" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game5" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game5"> 🌟 This is my Sure Shot
+            </label>
+        </div>
 
-</div> <script>
-    // 1. PASTE YOUR GOOGLE WEB APP URL BETWEEN THE QUOTES BELOW
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyB1Efd_6Ob3goo7_uP-72oyHIDKhR3IYiP01DcuIshUGeLQvqcMh4KMJ6JBrHN5YQ/exec'; 
+        <!-- Game 6 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">6. Chicago Bears @ Carolina Panthers</span>
+                <span class="game-time">Sun 1:00 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game6" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game6" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game6" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game6"> 🌟 This is my Sure Shot
+            </label>
+        </div>
 
-    function makeBet(btn, type) {
-        const parent = btn.parentElement;
-        parent.querySelectorAll('.bet-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-    }
+        <!-- Game 7 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">7. Cleveland Browns @ Jacksonville Jaguars</span>
+                <span class="game-time">Sun 1:00 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game7" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game7" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game7" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game7"> 🌟 This is my Sure Shot
+            </label>
+        </div>
 
-    function submitPicks() {
-        const name = document.getElementById('player-name').value;
-        
-        if (!name) {
-            alert("Please select your name before submitting!");
+        <!-- Game 8 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">8. New Orleans Saints @ Detroit Lions</span>
+                <span class="game-time">Sun 1:00 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game8" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game8" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game8" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game8"> 🌟 This is my Sure Shot
+            </label>
+        </div>
+
+        <!-- Game 9 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">9. New York Jets @ Tennessee Titans</span>
+                <span class="game-time">Sun 1:00 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game9" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game9" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game9" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game9"> 🌟 This is my Sure Shot
+            </label>
+        </div>
+
+        <!-- Game 10 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">10. Tampa Bay Buccaneers @ Cincinnati Bengals</span>
+                <span class="game-time">Sun 1:00 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game10" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game10" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game10" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game10"> 🌟 This is my Sure Shot
+            </label>
+        </div>
+
+        <!-- Game 11 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">11. Arizona Cardinals @ Los Angeles Chargers</span>
+                <span class="game-time">Sun 4:25 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game11" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game11" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game11" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game11"> 🌟 This is my Sure Shot
+            </label>
+        </div>
+
+        <!-- Game 12 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">12. Green Bay Packers @ Minnesota Vikings</span>
+                <span class="game-time">Sun 4:25 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game12" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game12" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game12" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game12"> 🌟 This is my Sure Shot
+            </label>
+        </div>
+
+        <!-- Game 13 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">13. Miami Dolphins @ Las Vegas Raiders</span>
+                <span class="game-time">Sun 4:25 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game13" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game13" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game13" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game13"> 🌟 This is my Sure Shot
+            </label>
+        </div>
+
+        <!-- Game 14 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">14. Washington Commanders @ Philadelphia Eagles</span>
+                <span class="game-time">Sun 4:25 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game14" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game14" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game14" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game14"> 🌟 This is my Sure Shot
+            </label>
+        </div>
+
+        <!-- Game 15 -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">15. Dallas Cowboys @ New York Giants</span>
+                <span class="game-time">Sun 8:20 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game15" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game15" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game15" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game15"> 🌟 This is my Sure Shot
+            </label>
+        </div>
+
+        <!-- Game 16 (Tiebreaker) -->
+        <div class="game-card">
+            <div class="game-header">
+                <span class="game-title">16. Denver Broncos @ Kansas City Chiefs</span>
+                <span class="game-time">Mon 8:15 PM</span>
+            </div>
+            <div class="game-spread">Favored: TBA</div>
+            <div class="pick-options">
+                <button type="button" class="btn-pick" data-game="Game16" data-val="YES">YES</button>
+                <button type="button" class="btn-pick" data-game="Game16" data-val="NO">NO</button>
+                <button type="button" class="btn-pick" data-game="Game16" data-val="UF">UF</button>
+            </div>
+            <label class="sureshot-container">
+                <input type="radio" name="sureshot" value="Game16"> 🌟 This is my Sure Shot
+            </label>
+        </div>
+
+        <!-- Tiebreaker Score Prediction -->
+        <div class="section-card">
+            <label>Monday Night Tiebreaker: Total Score Prediction</label>
+            <div class="subtitle" style="margin-bottom: 8px;">Denver Broncos @ Kansas City Chiefs</div>
+            <div class="tiebreaker-grid">
+                <div>
+                    <label for="awayScore" style="color: var(--text-muted); font-size: 0.8rem;">Broncos Score</label>
+                    <input type="number" id="awayScore" min="0" max="99" required placeholder="0">
+                </div>
+                <div>
+                    <label for="homeScore" style="color: var(--text-muted); font-size: 0.8rem;">Chiefs Score</label>
+                    <input type="number" id="homeScore" min="0" max="99" required placeholder="0">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">LOCK IN MY PICKS 🔒</button>
+    </form>
+</div>
+
+<script>
+    const picks = {};
+
+    // Handle YES / NO / UF button selections
+    document.querySelectorAll('.btn-pick').forEach(button => {
+        button.addEventListener('click', function() {
+            const game = this.dataset.game;
+            const val = this.dataset.val;
+
+            // Remove active from sibling buttons in this card
+            this.parentElement.querySelectorAll('.btn-pick').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            picks[game] = val;
+        });
+    });
+
+    // Form Submission
+    document.getElementById('picksForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const player = document.getElementById('playerSelect').value;
+        const sureshot = document.querySelector('input[name="sureshot"]:checked')?.value;
+        const awayScore = document.getElementById('awayScore').value;
+        const homeScore = document.getElementById('homeScore').value;
+
+        // Verify all 16 games are picked
+        if (Object.keys(picks).length < 16) {
+            alert("Please make a pick (YES, NO, or UF) for all 16 games before submitting!");
             return;
         }
 
-        // 2. This part gathers your data
-        const games = document.querySelectorAll('.game-card');
-        const game1Pick = games[0].querySelector('.bet-btn.active')?.innerText || "No Pick";
-        const game2Pick = games[1].querySelector('.bet-btn.active')?.innerText || "No Pick";
-        
-        const sureShotElement = document.querySelector('input[name="sureShot"]:checked');
-        const sureShot = sureShotElement ? "Game " + sureShotElement.value : "None";
-        
-        const awayScore = document.getElementById('away-score').value;
-        const homeScore = document.getElementById('home-score').value;
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.innerText = "Submitting...";
+        submitBtn.disabled = true;
 
-        // 3. This packages the data for your Google Sheet
-        const formData = new URLSearchParams();
-        formData.append('Player', name);
-        formData.append('Game1', game1Pick);
-        formData.append('Game2', game2Pick);
-        formData.append('SureShot', sureShot);
-        formData.append('AwayScore', awayScore);
-        formData.append('HomeScore', homeScore);
-formData.append('Week', 'Week 1');
+        // Replace with your Google Apps Script Web App URL
+        const scriptURL = https://script.google.com/macros/s/AKfycby5XgP5T41FWbyJ9mMb7sbnJhglqNv94DWW9UVqrhXQzVFjHt9VRQvrTfy9CHff1dHS/exec;
 
-        // Show a "Processing" message so the user knows it's working
-        const btn = document.querySelector('.submit-all');
-        btn.innerText = "Sending...";
-        btn.disabled = true;
+        const payload = {
+            week: "Week 1",
+            player: player,
+            sureshot: sureshot,
+            awayScore: awayScore,
+            homeScore: homeScore,
+            ...picks
+        };
 
-        // 4. This sends the data to Google
-        fetch(scriptURL, { method: 'POST', body: formData})
-            .then(response => {
-                alert("Success, " + name + "! Your picks are locked in.");
-                window.location.reload(); 
-            })
-            .catch(error => {
-                alert('Error! Please try again.');
-                btn.innerText = "Lock My Picks";
-                btn.disabled = false;
-            });
-    }
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).then(() => {
+            alert("🎉 Picks locked in successfully!");
+            window.location.href = "index.html";
+        }).catch(err => {
+            console.error(err);
+            alert("There was an error saving your picks. Please try again.");
+            submitBtn.innerText = "LOCK IN MY PICKS 🔒";
+            submitBtn.disabled = false;
+        });
+    });
 </script>
 
 </body>
