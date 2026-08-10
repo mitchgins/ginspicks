@@ -1,85 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GinsPicks | Home</title>
-    <style>
-        :root {
-            --primary: #013369;
-            --secondary: #d50a0a;
-            --bg: #f4f4f9;
-            --white: #ffffff;
-        }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 30px; }
-        h1 { color: var(--primary); margin: 0; font-size: 2.2em; letter-spacing: -1px; }
-        
-        /* Leaderboard Style */
-        .leaderboard-card { background: var(--white); border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); margin-bottom: 40px; }
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; font-size: 0.8em; color: #888; text-transform: uppercase; padding-bottom: 10px; }
-        td { padding: 12px 5px; border-bottom: 1px solid #f9f9f9; font-weight: 500; }
-        .points { text-align: right; font-weight: bold; color: var(--primary); }
-        .rank-1 { background: #fffdf0; color: #b8860b; }
-
-        /* Week Menu Style */
-        .week-menu { display: flex; flex-direction: column; gap: 15px; }
-        .week-link { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            background: var(--white); 
-            padding: 20px; 
-            text-decoration: none; 
-            color: var(--primary); 
-            font-weight: bold; 
-            border-radius: 12px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: 0.2s;
-            border-left: 5px solid transparent;
-        }
-        .week-link:hover { transform: translateX(5px); border-left-color: var(--secondary); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .week-status { font-size: 0.8em; color: #28a745; text-transform: uppercase; }
-        .locked { color: #888; border-left-color: #ccc; background: #eee; cursor: not-allowed; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GinsPicks - Select Week</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #1e3a8a;
+      margin-bottom: 5px;
+    }
+    p.subtitle {
+      color: #64748b;
+      font-size: 0.95em;
+      margin-bottom: 25px;
+    }
+    .week-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn-week {
+      display: block;
+      padding: 14px;
+      background-color: #1e3a8a;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+    .btn-week:hover {
+      background-color: #1d4ed8;
+    }
+    .btn-disabled {
+      display: block;
+      padding: 14px;
+      background-color: #e2e8f0;
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>GinsPicks</h1>
-        <p>Family NFL Pool 2026</p>
-    </header>
+  <h1>🏈 GinsPicks</h1>
+  <p class="subtitle">Select a week to make or view your picks</p>
 
-    <div class="leaderboard-card">
-        <h3 style="margin-top:0; text-align:center;">🏆 SEASON STANDINGS</h3>
-        <table>
-            <thead>
-                <tr><th>Rank</th><th>Player</th><th style="text-align:right;">Pts</th></tr>
-            </thead>
-            <tbody>
-                <tr class="rank-1"><td>1</td><td>🥇 Mom</td><td class="points">0</td></tr>
-                <tr><td>2</td><td>🥈 Dad</td><td class="points">0</td></tr>
-                <tr><td>3</td><td>🥉 Mitchell</td><td class="points">0</td></tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="week-grid">
+    <!-- ACTIVE WEEKS -->
+    <a href="week1.html" class="btn-week">Week 1 Picks</a>
+    <a href="week2.html" class="btn-week">Week 2 Picks</a>
 
-    <h2 style="color: var(--primary); font-size: 1.2em; margin-bottom: 15px;">Weekly Picks</h2>
-    <div class="week-menu">
-        <a href="week1.html" class="week-link">
-            <span>Week 1: Season Opener</span>
-            <span class="week-status">Open</span>
-        </a>
-
-        <a href="#" class="week-link locked">
-            <span>Week 2: Upcoming</span>
-            <span style="color:#888;">Coming Soon</span>
-        </a>
-        
-        </div>
+    <!-- UPCOMING WEEKS (DISABLED) -->
+    <div class="btn-disabled">Week 3 (Coming Soon)</div>
+    <div class="btn-disabled">Week 4 (Coming Soon)</div>
+  </div>
 </div>
 
 </body>
