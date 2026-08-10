@@ -1,1 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GinsPicks - Week 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      text-align: center;
+      color: #1e3a8a;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    select, input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .game-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 12px;
+      background-color: #fafafa;
+    }
+    .matchup {
+      font-weight: bold;
+      font-size: 1.05em;
+      margin-bottom: 4px;
+    }
+    .spread {
+      font-size: 0.9em;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+    .pick-options {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .btn-pick {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #cbd5e1;
+      background-color: #ffffff;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .btn-pick.active {
+      background-color: #1e3a8a;
+      color: #ffffff;
+      border-color: #1e3a8a;
+    }
+    .sureshot-label {
+      font-size: 0.85em;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .submit-btn {
+      width: 100%;
+      background-color: #16a34a;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .submit-btn:hover {
+      background-color: #15803d;
+    }
+  </style>
+</head>
+<body>
 
+<div class="container">
+  <h1>🏈 GinsPicks - Week 2</h1>
+  
+  <form id="picksForm">
+    <!-- PLAYER SELECTION -->
+    <div class="form-group">
+      <label for="playerSelect">WHO IS MAKING THESE PICKS?</label>
+      <select id="playerSelect" name="player" required>
+        <option value="" disabled selected>-- Choose Your Name --</option>
+        <option value="Mom">Mom</option>
+        <option value="Dad">Dad</option>
+        <option value="Mitchell">Mitchell</option>
+      </select>
+    </div>
+
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #e2e8f0;">
+
+    <!-- GAMES 1 TO 16 -->
+    <!-- Game 1 -->
+    <div class="game-card">
+      <div class="matchup">1. Detroit Lions @ Buffalo Bills</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game1" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game1" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game1" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game1" required> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 2 -->
+    <div class="game-card">
+      <div class="matchup">2. Carolina Panthers @ Atlanta Falcons</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game2" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game2" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game2" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game2"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 3 -->
+    <div class="game-card">
+      <div class="matchup">3. Cincinnati Bengals @ Houston Texans</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game3" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game3" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game3" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game3"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 4 -->
+    <div class="game-card">
+      <div class="matchup">4. Cleveland Browns @ Tampa Bay Buccaneers</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game4" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game4" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game4" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game4"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 5 -->
+    <div class="game-card">
+      <div class="matchup">5. Green Bay Packers @ New York Jets</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game5" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game5" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game5" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game5"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 6 -->
+    <div class="game-card">
+      <div class="matchup">6. Minnesota Vikings @ Chicago Bears</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game6" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game6" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game6" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game6"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 7 -->
+    <div class="game-card">
+      <div class="matchup">7. New Orleans Saints @ Baltimore Ravens</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game7" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game7" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game7" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game7"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 8 -->
+    <div class="game-card">
+      <div class="matchup">8. Philadelphia Eagles @ Tennessee Titans</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game8" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game8" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game8" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game8"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 9 -->
+    <div class="game-card">
+      <div class="matchup">9. Pittsburgh Steelers @ New England Patriots</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game9" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game9" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game9" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game9"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 10 -->
+    <div class="game-card">
+      <div class="matchup">10. Jacksonville Jaguars @ Denver Broncos</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game10" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game10" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game10" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game10"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 11 -->
+    <div class="game-card">
+      <div class="matchup">11. Las Vegas Raiders @ Los Angeles Chargers</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game11" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game11" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game11" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game11"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 12 -->
+    <div class="game-card">
+      <div class="matchup">12. Miami Dolphins @ San Francisco 49ers</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game12" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game12" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game12" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game12"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 13 -->
+    <div class="game-card">
+      <div class="matchup">13. Seattle Seahawks @ Arizona Cardinals</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game13" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game13" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game13" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game13"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 14 -->
+    <div class="game-card">
+      <div class="matchup">14. Washington Commanders @ Dallas Cowboys</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game14" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game14" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game14" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game14"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 15 -->
+    <div class="game-card">
+      <div class="matchup">15. Indianapolis Colts @ Kansas City Chiefs</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game15" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game15" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game15" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game15"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- Game 16 -->
+    <div class="game-card">
+      <div class="matchup">16. New York Giants @ Los Angeles Rams</div>
+      <div class="spread">Spread: TBA</div>
+      <div class="pick-options">
+        <button type="button" class="btn-pick" data-game="Game16" data-val="YES">YES</button>
+        <button type="button" class="btn-pick" data-game="Game16" data-val="NO">NO</button>
+        <button type="button" class="btn-pick" data-game="Game16" data-val="UF">UF</button>
+      </div>
+      <label class="sureshot-label">
+        <input type="radio" name="sureshot" value="Game16"> 🌟 This is my Sure Shot
+      </label>
+    </div>
+
+    <!-- MONDAY NIGHT BONUS -->
+    <div class="form-group" style="margin-top: 25px;">
+      <label>MONDAY NIGHT BONUS</label>
+      <p style="font-size:0.85em; color:#64748b; margin-top:2px;">New York Giants @ Los Angeles Rams</p>
+      <div style="display:flex; gap:10px;">
+        <input type="number" name="tb_giants" placeholder="Giants Score" required>
+        <input type="number" name="tb_rams" placeholder="Rams Score" required>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">LOCK MY PICKS</button>
+  </form>
+</div>
+
+<script>
+  // Handle button selection state
+  const pickButtons = document.querySelectorAll('.btn-pick');
+  const userPicks = {};
+
+  pickButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const game = button.getAttribute('data-game');
+      const val = button.getAttribute('data-val');
+      
+      // Clear active state for this game's buttons
+      document.querySelectorAll(`.btn-pick[data-game="${game}"]`).forEach(btn => btn.classList.remove('active'));
+      
+      // Set active
+      button.classList.add('active');
+      userPicks[game] = val;
+    });
+  });
+
+  // Handle Form Submission
+  document.getElementById('picksForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Check all 16 games picked
+    if (Object.keys(userPicks).length < 16) {
+      alert("Please make a selection (YES, NO, or UF) for all 16 games!");
+      return;
+    }
+
+    alert("Picks submitted successfully!");
+  });
+</script>
+
+</body>
+</html>
